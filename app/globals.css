@@ -17,3 +17,18 @@ nav button .css-onkibi{
   width: 10px;
   height: 10px;
 }
+.form-control{
+  max-width: 200px;
+}
+
+@media (width <= 512px){
+  .container-fluid table thead tr th{
+    background-color: #f9f9fb;
+    font-size: 12px;
+    text-wrap: nowrap;
+  }
+  .container-fluid table tbody tr td{
+    font-size: 13px;
+    padding: 10px;
+  }
+}
