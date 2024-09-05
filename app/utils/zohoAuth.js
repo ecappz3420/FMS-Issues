@@ -22,9 +22,9 @@ export async function refreshAccessToken() {
 }
 
 export async function getRecords(id, accessToken, reportName) {
-    console.log("Phone Number: ", phone);
     try {
-        const response = await axios.get(`https://creator.zoho.com/api/v2/dhaqane/fms/report/${reportName}?criteria=Reported_By=${id}`, {
+        const  criteria = encodeURIComponent(`Reported_By=${id}`);
+        const response = await axios.get(`https://creator.zoho.com/api/v2/dhaqane/fms/report/${reportName}?criteria=${criteria}`, {
             headers: {
                 Authorization: `Zoho-oauthtoken ${accessToken}`,
             },
@@ -40,16 +40,17 @@ export async function getRecords(id, accessToken, reportName) {
 
 export async function checkUsers(phone, pin, access_token) {
     try {
-        const response = await axios.get(`https://creator.zoho.com/api/v2/dhaqane/fms/report/Users?criteria=PIN_Number==${pin} AND Phone_Number=="${phone}"`, {
+        const criteria = encodeURIComponent(`(Phone_Number=="${phone}") && (PIN_Number=${pin})`);
+        const response = await axios.get(`https://creator.zoho.com/api/v2/dhaqane/fms/report/Users?criteria=${criteria}`, {
             headers: {
                 Authorization: `Zoho-oauthtoken ${access_token}`,
             },
         })
         console.log('Fetched Records:', response.data.data[0]);
         return response.data.data[0];
-        
+
     } catch (error) {
-     console.log("Invalid Entries");
-     throw error;   
+        console.log("Invalid Entries");
+        throw error;
     }
 }

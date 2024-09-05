@@ -1,21 +1,29 @@
+.container-fluid{
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+}
 .login-form .field{
   border-color: rgb(194, 194, 194);
 }
 .login-form label{
   margin-bottom: 10px !important;
 }
+.content{
+  flex: 1;
+}
 .container-fluid table thead tr th{
-  background-color: #f9f9fb;
+  background-color: #f0f0f0;
   font-size: 14px;
   text-wrap: nowrap;
+  position: sticky;
+  top: 0; 
+  z-index: 10;
 }
 .container-fluid table tbody tr td{
   font-size: 15px;
   padding: 10px;
-}
-nav button .css-onkibi{
-  width: 10px;
-  height: 10px;
 }
 .form-control{
   max-width: 200px;

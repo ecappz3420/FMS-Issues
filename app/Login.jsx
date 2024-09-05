@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import { PinInput, PinInputField, HStack, InputLeftElement, InputGroup, Input } from '@chakra-ui/react';
 import { PhoneIcon } from '@chakra-ui/icons';
+import { useRouter } from 'next/navigation';
 
 
 
@@ -9,7 +10,7 @@ const Login = () => {
     const [phoneNumber, SetPhoneNumber] = useState('');
     const [password, setPassword] = useState('');
     const [errorAlert, setErrorAlert] = useState('');
-
+    const router = useRouter();
     const handlePinChange = (value) => {
         setPassword(value); 
     };
@@ -24,6 +25,7 @@ const Login = () => {
                 throw new Error('Authentication failed');
             }
             const { record } = await response.json();
+            router.push(`${record.ID}/report`);
         } catch (error) {
             setErrorAlert("Invalid Credentials");
             console.error('Error:', error);
