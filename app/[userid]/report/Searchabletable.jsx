@@ -2,7 +2,7 @@
 import { useRouter } from 'next/navigation';
 import React, { useState, useMemo } from 'react';
 
-const SearchableTable = ({ initialRecords }) => {
+const SearchableTable = ({ initialRecords, id }) => {
     const [searchTerm, setSearchTerm] = useState('');
     const router = useRouter();
 
@@ -14,20 +14,25 @@ const SearchableTable = ({ initialRecords }) => {
         );
     }, [searchTerm, initialRecords]);
 
-    const changeURL = ()=> {
+    const changeURL = () => {
         router.push('/');
     }
+    const openForm = () => {
+        router.push(`Add_Issue`);
+    }
+   
 
     return (
         <>
             <nav className='navbar bg-light position-sticky top-0'>
                 <div className="d-flex w-100 justify-content-between">
-                    <h4 className='ms-4'>All Issues</h4>
+                    <h4 className='ms-4 d-xs-none'>All Issues</h4>
+                    <div className='form-control'><input type="text" className='bg-transperant search-bar border-0' onChange={(e)=> setSearchTerm(e.target.value)}  placeholder='Search Here'/></div>
                     <div className='d-flex gap-2 me-2'>
-                    <button className='btn btn-primary btn-sm px-3'>New</button>
-                    <button className='btn btn-danger btn-sm px-3' onClick={changeURL}>Back</button>
+                        <button className='btn btn-primary btn-sm px-3' onClick={openForm}>Add Issue</button>
+                        <button className='btn btn-danger btn-sm px-3' onClick={changeURL}>Back</button>
                     </div>
-                    
+
                 </div>
             </nav>
             <div className="overflow-y-auto content">

@@ -4,9 +4,11 @@
   height: 100%;
   overflow: hidden;
 }
+
 .login-form .field{
   border-color: rgb(194, 194, 194);
 }
+
 .login-form label{
   margin-bottom: 10px !important;
 }
@@ -29,6 +31,76 @@
   max-width: 200px;
 }
 
+.search-bar:focus{
+  border: none;
+  outline: none;
+}
+.dropdown input:focus{
+  outline: none;
+  border: none;
+}
+.dropdown .form-control{
+  max-width: none !important;
+}
+.dropdown .dropdown-menu{
+  width: 100%;
+}
+.dropdown .dropdown-menu .dropdown-list{
+  max-height: 200px;
+  overflow-y: auto;
+}
+.dropdown .dropdown-menu .dropdown-list::-webkit-scrollbar{
+  width: 6px;
+}
+
+.dropdown .dropdown-menu .dropdown-list::-webkit-scrollbar-thumb{
+  background: #b2b2b2;
+  border-radius: 6px;
+}
+
+.custom-scroll::-webkit-scrollbar{
+width: 6px;
+}
+.custom-scroll::-webkit-scrollbar-thumb{
+  background: #b2b2b2;
+  border-radius: 6px;
+}
+.cursor-pointer{
+  cursor: pointer;
+}
+
+.dropdown .open svg{
+ transition: 0.2s;
+ rotate: 180deg;
+}
+.dropdown .close svg{
+  transition: 0.2s;
+  rotate: 0deg;
+}
+
+/* HTML: <div class="loader"></div> */
+.loader {
+  width: fit-content;
+  font-weight: bold;
+  font-family: monospace;
+  white-space: pre;
+  font-size: 30px;
+  line-height: 1.2em;
+  height: 1.2em;
+  overflow: hidden;
+}
+.loader:before {
+  content:"Loading...\AgodnLai...\Aoiaglni...\ALiongad...\Agindola...\Analoidg...";
+  white-space: pre;
+  display:inline-block;
+  animation: l38 1s infinite steps(6);
+}
+
+@keyframes l38 {
+  100%{transform: translateY(-100%)}
+}
+
+
 @media (width <= 512px){
   .container-fluid table thead tr th{
     background-color: #f9f9fb;
@@ -38,5 +110,8 @@
   .container-fluid table tbody tr td{
     font-size: 13px;
     padding: 10px;
+  }
+  .d-xs-none{
+    display: none;
   }
 }

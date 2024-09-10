@@ -13,7 +13,7 @@ const Table = async ({ userid }) => {
 
     return (
         <>
-           <SearchableTable initialRecords={records}/>
+           <SearchableTable initialRecords={records} id={userid}/>
         </>
     );
 };
