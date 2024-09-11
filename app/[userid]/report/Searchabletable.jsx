@@ -1,10 +1,8 @@
 'use client'
-import { useRouter } from 'next/navigation';
 import React, { useState, useMemo } from 'react';
 
 const SearchableTable = ({ initialRecords, id }) => {
     const [searchTerm, setSearchTerm] = useState('');
-    const router = useRouter();
 
     const filteredRecords = useMemo(() => {
         if (!searchTerm) return initialRecords.data;
@@ -14,38 +12,30 @@ const SearchableTable = ({ initialRecords, id }) => {
         );
     }, [searchTerm, initialRecords]);
 
-    const changeURL = () => {
-        router.push('/');
-    }
-    const openForm = () => {
-        router.push(`Add_Issue`);
-    }
-   
-
     return (
         <>
             <nav className='navbar bg-light position-sticky top-0'>
-                <div className="d-flex w-100 justify-content-between">
-                    <h4 className='ms-4 d-xs-none'>All Issues</h4>
-                    <div className='form-control'><input type="text" className='bg-transperant search-bar border-0' onChange={(e)=> setSearchTerm(e.target.value)}  placeholder='Search Here'/></div>
+                <div className="d-flex w-100 justify-content-between align-items-center">
+                    <h5 className='ms-4 d-xs-none d-flex align-items-center'>All Issues</h5>
+                    <input type="text" className='bg-transperant search-bar border-1 form-control' onChange={(e)=> setSearchTerm(e.target.value)}  placeholder='Search here...'/>
                     <div className='d-flex gap-2 me-2'>
-                        <button className='btn btn-primary btn-sm px-3' onClick={openForm}>Add Issue</button>
-                        <button className='btn btn-danger btn-sm px-3' onClick={changeURL}>Back</button>
+                        <a className='btn btn-primary shadow-md btn-sm' href='Add_Issue' >Add</a>
+                        <a className='btn btn-primary shadow-md btn-sm' href='/'>Back</a>
                     </div>
 
                 </div>
             </nav>
             <div className="overflow-y-auto content">
-                <table className='table text-center table-responsive border'>
+                <table className='table text-center table-striped table-responsive border'>
                     <thead>
                         <tr>
-                            <th><input type="checkbox" /></th>
-                            <th className='text-secondary'>Issue Type</th>
-                            <th className='text-secondary'>Issue</th>
-                            <th className='text-secondary'>Issue Details</th>
-                            <th className='text-secondary'>Priority</th>
-                            <th className='text-secondary'>Reported By</th>
-                            <th className='text-secondary'>Reported Date & Time</th>
+                            <th className='bg-dark text-white'><input type="checkbox" /></th>
+                            <th className='bg-dark text-white'>Issue Type</th>
+                            <th className='bg-dark text-white'>Issue</th>
+                            <th className='bg-dark text-white'>Issue Details</th>
+                            <th className='bg-dark text-white'>Priority</th>
+                            <th className='bg-dark text-white'>Reported By</th>
+                            <th className='bg-dark text-white'>Reported Date & Time</th>
                         </tr>
                     </thead>
                     <tbody>

@@ -10,7 +10,8 @@ const Header = () => {
     return (
         <header className='p-2 d-flex justify-content-between' style={{ height: '60px' }}>
             <div className="fs-4 fw-bold">Add Issue</div>
-            <button className='btn btn-primary btn-sm border-pills' onChange={changePath}>Back</button>
+            <div><a className='btn btn-primary' href='report'>Back</a></div>
+            
         </header>
     )
 }
