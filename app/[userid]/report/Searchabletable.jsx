@@ -8,7 +8,8 @@ const SearchableTable = ({ initialRecords, id }) => {
         if (!searchTerm) return initialRecords.data;
         return initialRecords.data.filter(record =>
             record.Issue_Type.toLowerCase().includes(searchTerm.toLowerCase()) ||
-            record.Issue.toLowerCase().includes(searchTerm.toLowerCase())
+            record.Issue.toLowerCase().includes(searchTerm.toLowerCase()) ||
+            record.Status.toLowerCase().includes(searchTerm.toLowerCase())
         );
     }, [searchTerm, initialRecords]);
 
@@ -16,13 +17,12 @@ const SearchableTable = ({ initialRecords, id }) => {
         <>
             <nav className='navbar bg-light position-sticky top-0'>
                 <div className="d-flex w-100 justify-content-between align-items-center">
-                    <h5 className='ms-4 d-xs-none d-flex align-items-center'>All Issues</h5>
-                    <input type="text" className='bg-transperant search-bar border-1 form-control' onChange={(e)=> setSearchTerm(e.target.value)}  placeholder='Search here...'/>
+                    <h5 className='ms-4 d-xs-none'>All Issues</h5>
+                    <input type="text" className='bg-transperant search-bar border-1 form-control' onChange={(e) => setSearchTerm(e.target.value)} placeholder='Search here...' />
                     <div className='d-flex gap-2 me-2'>
                         <a className='btn btn-primary shadow-md btn-sm' href='Add_Issue' >Add</a>
                         <a className='btn btn-primary shadow-md btn-sm' href='/'>Back</a>
                     </div>
-
                 </div>
             </nav>
             <div className="overflow-y-auto content">
@@ -34,7 +34,7 @@ const SearchableTable = ({ initialRecords, id }) => {
                             <th className='bg-dark text-white'>Issue</th>
                             <th className='bg-dark text-white'>Issue Details</th>
                             <th className='bg-dark text-white'>Priority</th>
-                            <th className='bg-dark text-white'>Reported By</th>
+                            <th className='bg-dark text-white'>Status</th>
                             <th className='bg-dark text-white'>Reported Date & Time</th>
                         </tr>
                     </thead>
@@ -49,7 +49,7 @@ const SearchableTable = ({ initialRecords, id }) => {
                                             <td>{record.Issue}</td>
                                             <td className='text-start'>{record.Issue_Details}</td>
                                             <td>{record.Priority}</td>
-                                            <td>{record.Reported_By.display_value}</td>
+                                            <td>{record.Status}</td>
                                             <td>{record.Reported_Date_Time}</td>
                                         </tr>
                                     ))
