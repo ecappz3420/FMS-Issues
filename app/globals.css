@@ -77,7 +77,12 @@ width: 6px;
   transition: 0.2s;
   rotate: 0deg;
 }
-
+.bg-orange{
+  background: #ee8700 !important;
+}
+.table tbody tr td{
+  color: #1c2434;
+}
 /* HTML: <div class="loader"></div> */
 .loader {
   width: fit-content;
