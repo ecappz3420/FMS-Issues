@@ -3,6 +3,8 @@ import React, { useState } from 'react';
 import { PinInput, PinInputField, HStack, InputLeftElement, InputGroup, Input } from '@chakra-ui/react';
 import { PhoneIcon } from '@chakra-ui/icons';
 import { useRouter } from 'next/navigation';
+import PhoneInput from 'react-phone-input-2';
+import 'react-phone-input-2/lib/style.css'
 
 
 
@@ -52,12 +54,13 @@ const Login = () => {
                                         <div className="container">
                                             <form className="login-form" onSubmit={handleSubmit}>
                                                 <label htmlFor="form-label">Phone Number</label>
-                                                <InputGroup className="mb-4">
-                                                    <InputLeftElement pointerEvents='none'>
-                                                        <PhoneIcon color='gray.400' />
-                                                    </InputLeftElement>
-                                                    <Input type='tel' maxLength={15} value={phoneNumber} onChange={e => SetPhoneNumber(e.target.value)} required />
-                                                </InputGroup>
+                                                <PhoneInput
+                                                country={'zm'}
+                                                onChange={e => SetPhoneNumber('+' + e)}
+                                                value={phoneNumber}
+                                                className={'mb-3'}
+                                                inputStyle={{width: '200px'}}
+                                                />
                                                 <label htmlFor="form-label mb-2">PIN</label>
                                                 <HStack className="mb-4 justify-content-between">
                                                     <PinInput otp onChange={handlePinChange}  >
