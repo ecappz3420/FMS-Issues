@@ -1,7 +1,13 @@
 import axios from "axios";
 
+let cachedAccessToken = null;
+let tokenExpiryTime = 0;
 export async function refreshAccessToken() {
     try {
+        if (cachedAccessToken && Date.now() < tokenExpiryTime) {
+            return cachedAccessToken; // Return cached token if not expired
+        }
+
         const response = await axios.post('https://accounts.zoho.com/oauth/v2/token', null, {
             params: {
                 refresh_token: process.env.REFRESH_TOKEN,
@@ -9,16 +15,17 @@ export async function refreshAccessToken() {
                 client_secret: process.env.CLIENT_SECRET,
                 grant_type: 'refresh_token',
             }
+        });
 
-        })
-        const { access_token } = response.data;
-        process.env.ZOHO_ACCESS_TOKEN = access_token;
+        const { access_token, expires_in } = response.data;
+        cachedAccessToken = access_token;
+        tokenExpiryTime = Date.now() + expires_in * 1000; 
+
         return access_token;
     } catch (error) {
         console.error('Failed to refresh Zoho access token', error);
         throw error;
     }
-
 }
 
 export async function getRecords(id, accessToken, reportName) {
@@ -76,7 +83,7 @@ export async function createIssue(formData, access_token) {
     try {
         const response = axios.post("https://www.zohoapis.com/creator/v2.1/data/dhaqane/fms/form/Issue",
             {
-                "data": JSON.stringify(formData)
+                "data": formData
             } ,{
             headers: {
                 Authorization: `Zoho-oauthtoken ${access_token}`,

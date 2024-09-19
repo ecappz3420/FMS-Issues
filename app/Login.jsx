@@ -1,7 +1,6 @@
 'use client'
 import React, { useState } from 'react';
-import { PinInput, PinInputField, HStack, InputLeftElement, InputGroup, Input } from '@chakra-ui/react';
-import { PhoneIcon } from '@chakra-ui/icons';
+import { PinInput, PinInputField, HStack } from '@chakra-ui/react';
 import { useRouter } from 'next/navigation';
 import PhoneInput from 'react-phone-input-2';
 import 'react-phone-input-2/lib/style.css'
@@ -32,8 +31,6 @@ const Login = () => {
         } catch (error) {
             setErrorAlert("Invalid Credentials");
             console.error('Error:', error);
-        }
-        finally {
             setLoad(false);
         }
     };
