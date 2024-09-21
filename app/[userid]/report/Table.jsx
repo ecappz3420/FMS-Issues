@@ -6,7 +6,7 @@ const Table = async ({ userid }) => {
 
     try {
         const access_token = await refreshAccessToken();
-        records = await getRecords(userid, access_token, "Issues");
+        records = await getRecords(userid, access_token, "Issue_Report");
     } catch (error) {
         console.error("Error fetching records:", error);
     }

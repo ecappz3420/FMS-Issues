@@ -5,8 +5,6 @@ import { useRouter } from 'next/navigation';
 import PhoneInput from 'react-phone-input-2';
 import 'react-phone-input-2/lib/style.css'
 
-
-
 const Login = () => {
     const [phoneNumber, SetPhoneNumber] = useState('');
     const [password, setPassword] = useState('');
